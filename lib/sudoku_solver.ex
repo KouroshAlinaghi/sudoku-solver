@@ -37,7 +37,7 @@ defmodule SudokuSolver do
     new_board = put(board, x, y, number)
     if validate_board(new_board) do
       if i == length(empties)-1 do
-        draw(new_board)
+        new_board
       else
         do_solve(new_board, 1, i+1, empties)
       end
