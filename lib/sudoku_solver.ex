@@ -3,7 +3,7 @@ defmodule SudokuSolver do
   import SudokuSolver.BoardHelpers 
 
   @moduledoc """
-  Documentation for `SudokuSolver`.
+  Solve algorithm for sudoku puzzle.
   """
 
   def solve(board) do
@@ -45,7 +45,7 @@ defmodule SudokuSolver do
   end
 end
 
-board = [
+example_board = [
   [nil,nil,6,nil,nil,8,5,nil,nil],
   [nil,nil,nil,nil,7,nil,6,1,3],
   [nil,nil,nil,nil,nil,nil,nil,nil,9],
@@ -57,5 +57,5 @@ board = [
   [3,nil,nil,1,nil,nil,nil,6,nil],
 ]
 
-SudokuSolver.solve(board)
+SudokuSolver.solve(example_board)
 
