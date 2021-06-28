@@ -1,12 +1,13 @@
 defmodule SudokuSolver do
 
-  import SudokuSolver.BoardHelpers 
+  import SudokuSolver.{BoardHelpers, ParseBoard}
 
   @moduledoc """
   Solve algorithm for sudoku puzzle.
   """
 
-  def solve(board) do
+  def solve(path) do
+    board = parse(path)
     empties = get_empties(board, 0, 0, [])
     do_solve(board, 1, 0, empties)
   end
@@ -23,6 +24,7 @@ defmodule SudokuSolver do
   # ]
   
 
+  def do_solve(_board, 10, 0, _empties), do: IO.inspect "This puzzle has no solutions"
   def do_solve(board, 10, i, empties) do
     {x, y} = Enum.at(empties, i)
     {px, py} = Enum.at(empties, i-1)
@@ -45,17 +47,4 @@ defmodule SudokuSolver do
   end
 end
 
-example_board = [
-  [nil,nil,6,nil,nil,8,5,nil,nil],
-  [nil,nil,nil,nil,7,nil,6,1,3],
-  [nil,nil,nil,nil,nil,nil,nil,nil,9],
-  [nil,nil,nil,nil,9,nil,nil,nil,1],
-  [nil,nil,1,nil,nil,nil,8,nil,nil],
-  [nil,nil,nil,5,3,nil,nil,nil,nil],
-  [1,nil,7,nil,5,3,nil,nil,nil],
-  [nil,5,nil,nil,6,4,nil,nil,nil],
-  [3,nil,nil,1,nil,nil,nil,6,nil],
-]
-
-SudokuSolver.solve(example_board)
-
+SudokuSolver.solve("lib/sudoku_solver/board_file.txt")
