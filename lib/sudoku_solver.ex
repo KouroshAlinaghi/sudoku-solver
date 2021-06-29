@@ -24,7 +24,7 @@ defmodule SudokuSolver do
   # ]
   
 
-  def do_solve(_board, 10, 0, _empties), do: IO.inspect "This puzzle has no solutions"
+  def do_solve(_board, 10, 0, _empties), do: {:error, "This puzzle has no solutions"}
   def do_solve(board, 10, i, empties) do
     {x, y} = Enum.at(empties, i)
     {px, py} = Enum.at(empties, i-1)
@@ -37,7 +37,7 @@ defmodule SudokuSolver do
     new_board = put(board, x, y, number)
     if validate_board(new_board) do
       if i == length(empties)-1 do
-        new_board
+        {:ok, new_board}
       else
         do_solve(new_board, 1, i+1, empties)
       end
@@ -46,5 +46,3 @@ defmodule SudokuSolver do
     end
   end
 end
-
-SudokuSolver.solve("lib/sudoku_solver/board_file.txt")

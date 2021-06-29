@@ -27,7 +27,7 @@ defmodule SudokuSolver.ParseBoard do
           end)
         end)
 
-      {:error, reason} -> IO.inspect reason
+      {:error, :enoent} -> IO.inspect "No such file: #{path}"
     end
   end
 end

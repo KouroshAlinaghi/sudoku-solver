@@ -1,26 +1,34 @@
 # Sudoku Solver
 Sovled the given puzzle, using [The “Simple Solving Algorithm”](http://pi.math.cornell.edu/~mec/Summer2009/meerkamp/Site/Solving_any_Sudoku_I.html) in a few seconds. (less than 10 seconds)
 ## Usage
-Call `SudokuSolver.solve/1` with one argument, the board!
-```
-example_board = [
-  [nil,nil,6,nil,nil,8,5,nil,nil],
-  [nil,nil,nil,nil,7,nil,6,1,3],
-  [nil,nil,nil,nil,nil,nil,nil,nil,9],
-  [nil,nil,nil,nil,9,nil,nil,nil,1],
-  [nil,nil,1,nil,nil,nil,8,nil,nil],
-  [nil,nil,nil,5,3,nil,nil,nil,nil],
-  [1,nil,7,nil,5,3,nil,nil,nil],
-  [nil,5,nil,nil,6,4,nil,nil,nil],
-  [3,nil,nil,1,nil,nil,nil,6,nil],
-]
+You need erlang installed on your system to run the executable.
+Create a file with the following format:
 
-SudokuSolver.solve(example_board)
+9 lines, each line only should have these characters:
+  1 - one-digit number
+  2 - * (empty homes)
+  3 - space (for seperating homes)
 
+An example: 
 
 ```
+* * 6 * * 8 5 * *
+* * * * 7 * 6 1 3
+* * * * * * * * 9
+* * * * 9 * * * 1
+* * 1 * * * 8 * *
+* * * 5 3 * * * *
+1 * 7 * 5 3 * * *
+* 5 * * 6 4 * * *
+3 * * 1 * * * 6 *
+```
 
-The output would look like this:
+Pass the file to the executable:
+`./sudoku_solver path/to/your/file`
+
+```
+
+The output would look like this (if the puzzle has a solution):
 ```
 "-------------------------------------"
 "| 2 | 9 | 6 | 3 | 1 | 8 | 5 | 4 | 7 |"
