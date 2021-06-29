@@ -4,8 +4,8 @@ Sovled the given puzzle, using [The “Simple Solving Algorithm”](http://pi.ma
 You need erlang installed on your system to run the executable.
 Create a file with the following format:
 
-9 lines, each line only should have these characters:
-  1 - one-digit number
+n lines (where the square root of n is a natural number), each line only should have these characters:
+  1 - one-digit number (or character, for more than 9*9)
   2 - * (empty homes)
   3 - space (for seperating homes)
 

@@ -25,15 +25,13 @@ defmodule SudokuSolver.Helpers do
   def draw(board) do
     size = length(board)
     for row <- board do
-      IO.inspect String.duplicate("-", 4*size + 1)
-      "| #{row
+      row
       |> Enum.map(fn num -> 
         if is_nil(num), do: " ", else: Integer.to_string(num, size+1)
       end)
-      |> Enum.join(" | ")} |"
+      |> Enum.join(" ")
       |> IO.inspect()
     end
-    IO.inspect String.duplicate("-", 4*size + 1)
   end
 
   @doc """
