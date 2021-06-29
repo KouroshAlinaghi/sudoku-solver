@@ -26,9 +26,8 @@ An example:
 Pass the file to the executable:
 `./sudoku_solver path/to/your/file`
 
-```
-
 The output would look like this (if the puzzle has a solution):
+
 ```
 "-------------------------------------"
 "| 2 | 9 | 6 | 3 | 1 | 8 | 5 | 4 | 7 |"
@@ -49,5 +48,4 @@ The output would look like this (if the puzzle has a solution):
 "-------------------------------------"
 "| 3 | 4 | 2 | 1 | 8 | 9 | 7 | 6 | 5 |"
 "-------------------------------------"
-
 ```
