@@ -11,8 +11,11 @@ defmodule SudokuSolver.ParseBoard do
   def parse(path) do
     case File.read(path) do
       {:ok, body} ->
+        size = (body
+               |> String.split("\n")
+               |> length()) - 1
         body
-        |> String.split("\n", parts: 9)
+        |> String.split("\n", parts: size)
         |> Enum.map(fn line -> 
           line
           |> String.trim
@@ -21,13 +24,12 @@ defmodule SudokuSolver.ParseBoard do
             if char == "*" do
               nil
             else
-              {num, ""} = Integer.parse(char)
-              num
+              String.to_integer(char, size+1)
             end
           end)
         end)
 
-      {:error, :enoent} -> IO.inspect "No such file: #{path}"
+      {:error, :enoent} -> IO.inspect "No such file or directory"
     end
   end
 end

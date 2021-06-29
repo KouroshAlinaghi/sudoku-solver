@@ -23,28 +23,29 @@ defmodule SudokuSolver.Helpers do
     Prints the given board
   """ 
   def draw(board) do
+    size = length(board)
     for row <- board do
-      IO.inspect String.duplicate("-", 37)
+      IO.inspect String.duplicate("-", 4*size + 1)
       "| #{row
       |> Enum.map(fn num -> 
-        if is_nil(num), do: " ", else: num
+        if is_nil(num), do: " ", else: Integer.to_string(num, size+1)
       end)
       |> Enum.join(" | ")} |"
       |> IO.inspect()
     end
-    IO.inspect String.duplicate("-", 37)
+    IO.inspect String.duplicate("-", 4*size + 1)
   end
 
   @doc """
     Retunrs a list of empty homes's (x, y), using to iterate through in solve algorithm
   """
-  def get_empties(_board, {_x, 9}, empties), do: empties
-  def get_empties(board, {9, y}, empties), do: get_empties(board, {0, y+1}, empties)
-  def get_empties(board, {x, y}, empties) do
-    if get_value(board, {x, y}) do
-      get_empties(board, {x+1, y}, empties)
+  def get_empties(table, {_x, y}, empties) when y == length(table), do: empties
+  def get_empties(table, {x, y}, empties) when x == length(table), do: get_empties(table, {0, y+1}, empties)
+  def get_empties(table, {x, y}, empties) do
+    if get_value(table, {x, y}) do
+      get_empties(table, {x+1, y}, empties)
     else
-      get_empties(board, {x+1, y}, empties ++ [{x, y}])
+      get_empties(table, {x+1, y}, Enum.concat(empties, [{x, y}]))
     end
   end
 end
