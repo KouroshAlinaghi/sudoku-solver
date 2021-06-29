@@ -1,9 +1,13 @@
 defmodule SudokuSolver.CLI do
   def main(args) do
+    t1 = System.os_time(:millisecond)
     case args
           |> parse_args()
           |> SudokuSolver.solve() do
-      {:ok, board} -> SudokuSolver.BoardHelpers.draw(board)
+      {:ok, board} -> 
+        t2 = System.os_time(:millisecond)
+        SudokuSolver.Helpers.draw(board)
+        IO.inspect "SOLVED in #{t2 - t1} milliseconds"
       {:error, reason} -> IO.inspect reason
     end
   end
